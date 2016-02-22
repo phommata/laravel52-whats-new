@@ -11,9 +11,11 @@
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+Route::get('/api/search/{term}', function ($term) {
+    return[
+        'results' => $term
+    ];
+})->middleware('throttle:3'); // default: 60 requests per minute
 
 Route::get('users/{user}', function (App\User $user) {
     return $user;
